@@ -6,6 +6,7 @@ from tkinter import ttk
 
 root = Tk()
 root.title('Calculator')
+root.resizable(width=False, height=False)
 # get the user input and place it in the textfield
 
 i = 0
@@ -38,7 +39,6 @@ def get_operations(operator):
     i += length
 
 
-
 def calculate():
     entire_string = display.get()
     try:
@@ -48,6 +48,7 @@ def calculate():
         display.insert(0, result)
     except Exception:
         tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+
 
 def fact_clicked():
     try:
@@ -64,11 +65,16 @@ display = Entry(root, width=40, borderwidth=5,font="Verdana 20", fg="black", bg=
 display.grid(row=1, columnspan=6, sticky=W + E, padx=10, pady=10)
 
 # buttons
+
+style = ttk.Style(root)
+style.configure("TButton", font=('wasy10', 12))
+
+
 ttk.Button(root, text="1", command=lambda: get_variable(1)).grid(row=2, column=0)
 ttk.Button(root, text="2", command=lambda: get_variable(2)).grid(row=2, column=1)
 ttk.Button(root, text="3", command=lambda: get_variable(3)).grid(row=2, column=2)
 
-ttk.Button(root, text="4", command=lambda: get_variable(4)).grid(row=3, column=0)
+ttk.Button(root, text="4",style="TButton", command=lambda: get_variable(4)).grid(row=3, column=0)
 ttk.Button(root, text="5", command=lambda: get_variable(5)).grid(row=3, column=1)
 ttk.Button(root, text="6", command=lambda: get_variable(6)).grid(row=3, column=2)
 
